@@ -1,0 +1,5 @@
+<!-- res/drawable/icon_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#DDDDDD"/> <!-- Kolor tła -->
+    <corners android:radius="12dp"/> <!-- Zaokrąglenie rogów -->
+</shape>

@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_weather"
+        android:icon="@drawable/ic_cloud"
+        android:title="Pogoda" />
+    <item
+        android:id="@+id/nav_advanced"
+        android:icon="@drawable/ic_advanced"
+        android:title="Zaawansowane" />
+    <item
+        android:id="@+id/nav_forecast"
+        android:icon="@drawable/ic_calendar"
+        android:title="Prognoza" />
+    <item
+        android:id="@+id/nav_location"
+        android:icon="@drawable/ic_location"
+        android:title="Lokalizacje" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Ustawienia" />
+</menu>
