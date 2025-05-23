@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     var hasShownTabletOfflineToast = false
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             bottomNav.selectedItemId = R.id.nav_weather
         }
 
-
         startAutoRefresh()
     }
 
@@ -79,7 +77,8 @@ class MainActivity : AppCompatActivity() {
         if (!city.isNullOrBlank()) {
             autoRefreshRunnable = object : Runnable {
                 override fun run() {
-                    val hasInternet = com.example.weatherapp.utils.NetworkUtils.isInternetAvailable(this@MainActivity)
+                    val hasInternet =
+                        com.example.weatherapp.utils.NetworkUtils.isInternetAvailable(this@MainActivity)
 
                     if (hasInternet) {
                         hasShownTabletOfflineToast = false
@@ -87,7 +86,11 @@ class MainActivity : AppCompatActivity() {
 
                         viewModel.fetchWeather(city, force = true)
                         viewModel.weatherData.value?.let { weather ->
-                            viewModel.fetchForecast(weather.coord.lat, weather.coord.lon, force = true)
+                            viewModel.fetchForecast(
+                                weather.coord.lat,
+                                weather.coord.lon,
+                                force = true
+                            )
                         }
                     } else if (!hasShownNoInternetToast) {
                         Toast.makeText(
@@ -110,6 +113,15 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        startAutoRefresh()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        autoRefreshRunnable?.let { handler.removeCallbacks(it) }
+    }
 
     override fun onDestroy() {
         super.onDestroy()
